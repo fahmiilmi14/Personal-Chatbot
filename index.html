@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal AI</title>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="app-container">
+        <aside class="settings-panel" id="sidebar">
+            <h2>MY AI</h2>
+            
+            <div class="input-group">
+                <label>Nama Bot:</label>
+                <input type="text" id="bot-name-input" placeholder="Contoh: IKI AI">
+            </div>
+
+            <div class="input-group">
+                <label>API Key:</label>
+                <input type="password" id="api-key" placeholder="Paste Key kamu...">
+            </div>
+
+            <div class="input-group">
+                <label>Model AI:</label>
+                <select id="model-select">
+                    <optgroup label="Groq (Ultra Fast)">
+                        <option value="llama-3.3-70b-versatile">Llama 3.3 70B</option>
+                        <option value="mixtral-8x7b-32768">Mixtral 8x7b</option>
+                    </optgroup>
+                    <optgroup label="Google Gemini">
+                        <option value="gemini-1.5-flash">Gemini 1.5 Flash</option>
+                        <option value="gemini-1.5-pro">Gemini 1.5 Pro</option>
+                    </optgroup>
+                    <optgroup label="OpenAI">
+                        <option value="gpt-4o">GPT-4o</option>
+                        <option value="gpt-3.5-turbo">GPT-3.5 Turbo</option>
+                    </optgroup>
+                </select>
+            </div>
+
+            <div class="input-group">
+                <label>Persona (System Prompt):</label>
+                <textarea id="persona-input" rows="3" placeholder="Contoh: Kamu adalah Pria Sawit..."></textarea>
+            </div>
+
+            <div class="input-group">
+                <label>Bubble User / AI:</label>
+                <div style="display:flex; gap:10px;">
+                    <input type="color" id="color-user" value="#007bff">
+                    <input type="color" id="color-ai" value="#333333">
+                </div>
+            </div>
+
+            <button id="save-config">Simpan & Generate Link</button>
+            
+            <div id="share-link-container" class="hidden">
+                <p style="font-size:11px; margin-top:10px; color: #aaa;">Copy Link Share:</p>
+                <div style="display:flex; gap:5px;">
+                    <input type="text" id="share-url" readonly onclick="this.select()">
+                    <button id="copy-btn" style="width:auto; padding: 5px 10px;">Copy</button>
+                </div>
+            </div>
+
+            <hr class="divider">
+            
+            <div class="history-section">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <label>History Chat:</label>
+                    <button id="new-chat-btn" style="width:auto; padding:4px 8px; font-size:10px;">+ Baru</button>
+                </div>
+                <div id="history-list"></div>
+            </div>
+        </aside>
+
+        <main class="chat-panel">
+            <header class="chat-header">
+                <h3 id="display-bot-name">AI Prototype</h3>
+            </header>
+            <div id="chat-box"></div>
+            <div class="input-area">
+                <label for="upload-img" style="cursor:pointer; font-size:22px;">📷</label>
+                <input type="file" id="upload-img" hidden accept="image/*">
+                <input type="text" id="user-msg" placeholder="Ketik pesan di sini...">
+                <button id="send-btn">Kirim</button>
+            </div>
+        </main>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
